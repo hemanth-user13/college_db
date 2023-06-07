@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'base/header.html' %}
+<head>
+    <title>Login</title>
+</head>
+<style>
+
+    body {
+        background-color: #1a1a1a;
+        background-image: linear-gradient(to bottom right, #1a1a1a, #2d2d2d);
+    }
+
+    .card-group {
+        margin-top: 50px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    p.text-muted {
+        font-size: 14px;
+        color: #888;
+    }
+
+    form {
+        margin-top: 30px;
+    }
+
+    .input-group-text {
+        background-color: #f8f9fa;
+        border: none;
+        border-radius: 10px 0 0 10px;
+        color: #888;
+    }
+
+    input.form-control {
+        border-radius: 0 10px 10px 0;
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .btn-link {
+        color: #888;
+        text-decoration: underline;
+        font-size: 14px;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .bg-primary {
+        background-color: #007bff;
+    }
+
+    .card-body.text-center {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #fff;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.5s ease-in-out;
+    }
+</style>
+
+<body class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card p-4">
+                        <div class="card-body">
+                          <h1 class="animate-fade-in" align="center">Login</h1>
+                            <p class="text-muted animate-fade-in" align="center">Sign In to your account</p>
+                            {% include 'partials/_alerts.html' %}
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                {% for field in forms %}
+                                    <div class="input-group mb-3 animate-fade-in">
+                                        <div class="input-group-prepend">
+                                            {% if field.name == 'username' %}
+                                                <span class="input-group-text">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/167/167123.png" alt="Username" width="20" height="20">
+                                                </span>
+                                            {% elif field.name == 'password' %}
+                                                <span class="input-group-text">
+                                                    <img src="https://www.svgrepo.com/show/84319/password.svg" alt="Password" width="20" height="20">
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
+
+                                <div class="row animate-fade-in">
+                                    <div class="col-6">
+                                        <input type="submit" class="btn btn-success px-4" value="Login">
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                                    </div>
+                                    <div class="col-12 text-right">
+                                        <a href="../student_login/" class="animate-slide-in">Student Login</a><br>
+                                        <a href="../managerlogin/" class="animate-slide-in">HR Login</a>
+                                    </div>
+                                </div>
+                            </form>
+                            {% if login_success %}
+                                <div class="alert alert-success mt-3 animate-fade-in">
+                                    Welcome Admin!
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/js.html' %}
+</body>
+</html>

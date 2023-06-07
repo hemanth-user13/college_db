@@ -1,0 +1,114 @@
+<head>
+    <title>Average Rating View</title>
+    <link rel="shortcut icon" href="https://static.vecteezy.com/system/resources/thumbnails/002/450/561/small/five-stars-rating-icon-vector.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e272e;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+
+        #content-wrapper {
+            padding-top: 50px;
+        }
+
+        .container-fluid {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Average Rating of Teachers</h1>
+
+    {% load static %}
+
+    {% block body %}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <canvas id="myChart1" width="500" height="500" style="background-color:white; padding:20px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var myChart1 = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [{% for name in teachers %} '{{ name }}', {% endfor %}],
+                datasets: [{
+                    label: 'Gender',
+                    data: [{% for rate in average_ratings %} '{{ rate }}', {% endfor %}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(151, 102, 132, 0.8)',
+                        'rgba(153, 99, 235, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 135, 0.8)',
+                        'rgba(25, 206, 86, 0.8)',
+                        'rgba(211, 192, 192, 0.8)',
+                        'rgba(234, 102, 132, 0.8)',
+                        'rgba(153, 99, 235, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(0, 128, 0, 0.8)',
+                        'rgba(255, 255, 0, 0.8)',
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 135, 1)',
+                        'rgba(25, 206, 86, 1)',
+                        'rgba(211, 192, 192, 1)',
+                        'rgba(234, 102, 132, 1)',
+                        'rgba(153, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(0, 128, 0, 1)',
+                        'rgba(255, 255, 0, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    {% endblock %}
+</body>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'base/header.html' %}
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HR Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #1a1a1a;
+            background-image: linear-gradient(to bottom right, #1a1a1a, #2d2d2d);
+        }
+
+        .card {
+            background-color: #f8f9fa;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            color: #343a40;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .text-muted {
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            background-color: #28a745; /* Green color */
+            border-color: #28a745;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838; /* Darker shade of green */
+            border-color: #218838;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+        }
+
+    </style>
+</head>
+
+<body class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card p-4 animate-fadeInUp">
+                        <div class="card-body">
+                            <h1 class="card-title" align="center">HR Login</h1>
+                            <p class="text-muted" align="center">Sign In to your account</p>
+                            {% include 'partials/_alerts.html' %}
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/167/167123.png" alt="Username" width="20" height="20">
+                                        </span>
+                                    </div>
+                                    <input type="text" name="username" placeholder="Username" class="form-control mb-3">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="https://www.svgrepo.com/show/84319/password.svg" alt="Password" width="20" height="20">
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" placeholder="Password" class="form-control mb-3">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="submit" class="btn btn-primary px-4 animate-fadeInUp" value="Login">
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                                    </div>
+                                </div>
+                            </form><br>
+                            {% if error_message %}
+                            <p style="color: red">{{ error_message }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% include 'base/js.html' %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function() {
+            $(".card").addClass("animate__animated animate__fadeInUp");
+        });
+    </script>
+
+</body>
+</html>

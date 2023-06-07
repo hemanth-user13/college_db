@@ -1,0 +1,112 @@
+{% load static %}
+<header class="app-header navbar">
+    <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Settings</a>
+        </li>
+        <li style="color: blue;">Hi {{ user.username }}!</li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
+               aria-haspopup="true" aria-expanded="false">
+                <img src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE=" class="img-avatar">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header text-center">
+                    <strong>Account</strong>
+                </div>
+                <a class="dropdown-item" href="#"><i class="fa fa-bell-o"></i> Updates<span
+                        class="badge badge-info">42</span></a>
+                <div class="dropdown-header text-center">
+                    <strong>Settings</strong>
+                </div>
+                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>
+                <a class="dropdown-item" href="https://gpay.gitam.edu/"><i class="fa fa-usd"></i> Payments<span class="badge badge-secondary">42</span></a>
+                <a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-lock"></i> Logout</a>
+            </div>
+        </li>
+    </ul>
+
+
+    </button>
+
+    {% block navbar %}
+    {% endblock %}
+</header>
+
+<style>
+    .app-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #333;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 2px;
+    }
+
+    .navbar-brand {
+        height: 40px;
+        width: 40px;
+        background-color: #333;
+        display: inline-block;
+    }
+
+    .nav-link {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #ff5733;
+    }
+
+    .nav-item {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .nav-item:last-child {
+        margin-right: 0;
+    }
+
+    .img-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+
+    .dropdown-menu {
+        min-width: 150px;
+    }
+
+    .dropdown-header {
+        background-color: #f8f9fa;
+        padding: 5px 10px;
+        font-weight: bold;
+    }
+
+    .dropdown-item {
+        padding: 8px 15px;
+    }
+
+    .badge {
+        margin-left: 5px;
+    }
+</style>

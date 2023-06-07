@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+        body {
+            background-color: #1e272e;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color:#90EE90;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        tr:hover {
+            background-color: #00ABE4;
+            transition: background-color 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        tbody tr {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <form method="get" action="../managerview/">
+        <h1>Student Rating Details</h1>
+        <table>
+            <tr>
+                <th>Teacher</th>
+                <th>Average Rating</th>
+            </tr>
+            {% for rating in data %}
+            <tr>
+                <td><a href="../individualrating/{{ rating.teacher }}" style="color:white;text-decoration:none">{{ rating.teacher }}</a></td>
+                <td>{{ rating.avg_rating|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

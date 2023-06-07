@@ -1,0 +1,67 @@
+<head>
+    <style>
+        body {
+            background-color: #1e272e;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color:#90EE90;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        tr:hover {
+            background-color: #00ABE4;
+            transition: background-color 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        tbody tr {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<h1>{{ teacher }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rating in ratings %}
+        <tr>
+            <td>{{ rating.username }}</td>
+            <td>{{ rating.rating }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

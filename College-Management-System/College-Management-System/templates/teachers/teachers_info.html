@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Portal</title>
+  <link rel="shortcut icon" href="https://5.imimg.com/data5/BU/GA/MY-24297425/eacademics-college-28complete-college-management-software-with-mobile-app-29-250x250.png">
+<style>
+body {
+  background-color: #1e272e;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #333333;
+  padding: 10px;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+  transition: color 0.3s ease; /* Add transition for smooth color change */
+}
+
+.navbar a:hover {
+  color: #198754;
+  transform: scale(1.1); /* Add scaling effect on hover */
+}
+
+.navbar a:not(:last-child) {
+  margin-right: 20px; /* Increase the right margin between navbar items */
+}
+
+.navbar a:before {
+  content: ""; /* Add a pseudo-element */
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease; /* Add transition for width change */
+}
+
+.navbar a:hover:before {
+  width: 100%; /* Expand the pseudo-element on hover */
+}
+
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 28px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  color: #bdc3c7;
+}
+
+select,
+input[type="submit"] {
+  margin-bottom: 10px;
+  background-color: #eaeff7;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  color: #34495e;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: #27ae60;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #219a52;
+}
+
+option {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 16px;
+  color: #ffffff;
+}
+
+tr:nth-child(even) {
+  background-color: BDB9B9;
+}
+
+tr:nth-child(odd) {
+  background-color: BDB9B9;
+}
+
+tr:hoover {
+  background-color: #44A9CC;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.event {
+  animation: slideIn 0.5s;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  animation: fadeIn 1s;
+}
+.pad{
+padding-right:550px
+}
+  .logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: green;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .logout-button:hover {
+    background-color: #c82333;
+  }
+  <style>
+  /* Add styling for the file upload section */
+  #files {
+    margin-top: 30px;
+  }
+
+  #files label {
+    display: block;
+    margin-top: 10px;
+    color: #bdc3c7;
+  }
+
+  #files input[type="file"] {
+    margin-bottom: 10px;
+    background-color: #eaeff7;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    color: #34495e;
+    width: 100%;
+  }
+
+  /* Style the file input button */
+  #files input[type="file"]::-webkit-file-upload-button {
+    background-color: #27ae60;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #files input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #219a52;
+  }
+</style>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var scrollLinks = document.querySelectorAll('a[href^="#"]'); // Get all anchor tags starting with #
+
+      for (var i = 0; i < scrollLinks.length; i++) {
+        scrollLinks[i].addEventListener('click', scrollToSection);
+      }
+
+      function scrollToSection(event) {
+        event.preventDefault(); // Prevent default anchor click behavior
+
+        var targetId = this.getAttribute('href'); // Get the href attribute value
+        var targetSection = document.querySelector(targetId); // Get the target section element
+
+        if (targetSection) {
+          // Use the smooth scroll behavior
+          targetSection.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  </script>
+
+  <nav class="navbar">
+  <a  class="pad">Welcome {{user.username}}</a>
+  <a href="#timetable">Timetable</a>
+  <a href="#academic-calendar">Academic Calendar</a>
+  <a href="#events-calendar">Events Calendar</a>
+  <a href="#teacher-rating">Teacher Rating</a>
+  <a href="http://127.0.0.1:8000/accounts/student_login/" class="logout-button">Logout</a>
+
+
+
+
+
+
+</nav>
+
+</head>
+<body>
+<section id="timetable">
+
+<table border="1">
+  <caption><h1>TIME-TABLE</h1></caption>
+  <tr>
+    <td>WEEK DAYS</td>
+    <td>8:00 to 8:50</td>
+    <td>9:00 to 9:50</td>
+    <td>10:00 to 10:50</td>
+    <td>11:00 to 11:50</td>
+    <td>12:00 to 12:50</td>
+    <td>1:00 to 1:50</td>
+    <td>2:00 to 2:50</td>
+    <td>3:00 to 3:50</td>
+  </tr>
+  <tr>
+    <td>MONDAY</td>
+    <td>CSD</td>
+    <td>WAD</td>
+    <td>ECM</td>
+    <td>EE</td>
+    <td>LUNCH</td>
+    <td colspan="2" align="center">CD LAB</td>
+    <td>AI</td>
+  </tr>
+  <tr>
+    <td>TUESDAY</td>
+    <td>CD</td>
+    <td>EM</td>
+    <td>AI</td>
+    <td>DWDM</td>
+    <td>LUNCH</td>
+    <td>CC</td>
+    <td>ECM</td>
+    <td>WAD</td>
+  </tr>
+  <tr>
+    <td>WEDNESDAY</td>
+    <td colspan="2" align="center">CC LAB</td>
+    <td colspan="2" align="center">DWDM LAB</td>
+    <td>LUNCH</td>
+    <td>HV</td>
+    <td colspan="2" align="center">CSD</td>
+  </tr>
+  <tr>
+    <td>THURSDAY</td>
+    <td>EM</td>
+    <td>CD</td>
+    <td colspan="2" align="center">WAD LAB</td>
+    <td>LUNCH</td>
+    <td>HV</td>
+    <td>AI</td>
+    <td>SL</td>
+  </tr>
+  <tr>
+    <td>FRIDAY</td>
+    <td>EM</td>
+    <td>CD</td>
+    <td>ECM</td>
+    <td>SL</td>
+    <td>LUNCH</td>
+    <td>CC</td>
+    <td>DWDM</td>
+    <td>AI</td>
+  </tr>
+  <tr>
+    <td>SATURDAY</td>
+    <td colspan="8" align="center">HOLIDAY</td>
+  </tr>
+  <tr>
+    <td>SUNDAY</td>
+    <td colspan="8" align="center">HOLIDAY</td>
+  </tr>
+</table>
+</section>
+<section id="academic-calendar">
+<h1>Academic Calendar</h1>
+<table>
+  <tr>
+    <th>Month</th>
+    <th>Event</th>
+    <th>Date</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>Start of Spring Semester</td>
+    <td>January 10</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>Midterm Examinations</td>
+    <td>February 15-20</td>
+  </tr>
+  <tr>
+    <td>March</td>
+    <td>Spring Break</td>
+    <td>March 7-14</td>
+  </tr>
+  <tr>
+    <td>April</td>
+    <td>Guest Lecture Series</td>
+    <td>April 5-9</td>
+  </tr>
+  <tr>
+    <td>May</td>
+    <td>Final Examinations</td>
+    <td>May 20-30</td>
+  </tr>
+  <tr>
+    <td>June</td>
+    <td>Summer Vacation</td>
+    <td>June 1-30</td>
+  </tr>
+</table>
+</section>
+<section id="events-calender">
+<h1 style="text-align: center;">Events Calendar</h1>
+<table style="text-align: center;">
+  <tr>
+    <th>Date</th>
+    <th>Events</th>
+  </tr>
+  <tr>
+    <td rowspan="4" class="date" style="vertical-align: top;">January, 2023</td>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">GUSAC Carnival</span><br>
+      <span class="event-details">Location: Ratan Tata Hall</span><br>
+      <span class="event-details">11th January</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">Eclub Carnival</span><br>
+      <span class="event-details">Location: VDC Room</span><br>
+      <span class="event-details">14th January</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">GPL Inauguration</span><br>
+      <span class="event-details">Location: Ground 2</span><br>
+      <span class="event-details">17th January</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">PRAMANA Day 1</span><br>
+      <span class="event-details">Location: Helipad</span><br>
+      <span class="event-details">14th February</span>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2" class="date" style="vertical-align: top;">February, 2023</td>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">PRAMANA Day 2</span><br>
+      <span class="event-details">Location: Helipad</span><br>
+      <span class="event-details">15th February</span>
+    </td>
+  </tr>
+  <tr>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">Ethnic Day</span><br>
+      <span class="event-details">Location: Circle Yard</span><br>
+      <span class="event-details">15th March</span>
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="4" class="date" style="vertical-align: top;">March, 2023</td>
+    <td class="event" style="vertical-align: top;">
+      <span class="event-title">Cinematic Day</span><br>
+      <span class="event-details">Location: Kinnera Hall</span><br>
+      <span class="event-details">17th March</span>
+    </td>
+  </tr>
+</table>
+  </section>
+<section id="teacher-rating">
+
+<div class="container">
+  <h1>Teacher Rating</h1>
+  <form method="post" action="../../studentrating/">
+    {% csrf_token %}
+    <label for="teacher">Select a Teacher:</label>
+    <select name="teacher" id="teacher">
+        {% for teacher in data %}
+            <option>{{ teacher }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="rating">Select a Rating:</label>
+    <select name="rating" id="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+
+
+
+    <input type="submit" value="Submit Rating">
+  </form>
+</div>
+  </section>
+
+<section id="files">
+  <form method="POST" enctype="multipart/form-data" action="../../upload/">
+    {% csrf_token %}
+    <label for="file">Upload File:</label>
+    <input type="file" name="file" id="file">
+    <input type="submit" value="Upload"><br>
+  </form>
+</section>
+</body>
+</html>
+

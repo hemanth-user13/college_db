@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include 'base/header.html' %}
+<head>
+    <title>Student Login</title>
+    <link rel="shortcut icon" href="https://5.imimg.com/data5/BU/GA/MY-24297425/eacademics-college-28complete-college-management-software-with-mobile-app-29-250x250.png">
+</head>
+<style>
+    body {
+        background-color: #1a1a1a;
+        background-image: linear-gradient(to bottom right, #1a1a1a, #2d2d2d);
+    }
+
+    .card-group {
+        margin-top: 50px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    p.text-muted {
+        font-size: 14px;
+        color: #888;
+    }
+
+    form {
+        margin-top: 30px;
+    }
+
+    .input-group-text {
+        background-color: #f8f9fa;
+        border: none;
+        border-radius: 10px 0 0 10px;
+        color: #888;
+    }
+
+    input.form-control {
+        border-radius: 0 10px 10px 0;
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+    .btn-link {
+        color: #888;
+        text-decoration: underline;
+        font-size: 14px;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+        color: #155724;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-weight: 600;
+        margin-top: 20px;
+    }
+
+    .bg-primary {
+        background-color: #777777; /* Change to desired shade of grey */
+    }
+
+    .card-body.text-center {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 16px;
+        color: #fff;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.5s ease-in-out;
+    }
+</style>
+
+<body class="app flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-group">
+                    <div class="card p-4 rounded-lg">
+                        <div class="card-body">
+                            <h1 class="animate-fade-in">Login</h1>
+                            <p class="text-muted animate-fade-in">Sign In to your account</p>
+                            {% include 'partials/_alerts.html' %}
+                            <form action="../loginv/" method="POST" class="animate-fade-in">
+                                {% csrf_token %}
+                                <div class="input-group mb-3 rounded-pill" style="border-color: #343a40;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/167/167123.png" alt="Username" width="20" height="20">
+                                        </span>
+                                    </div>
+                                    <input type="text" name="username" placeholder="Username" class="form-control" style="border:none;">
+                                </div>
+                                <div class="input-group mb-3 rounded-pill" style="border-color: #343a40;">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <img src="https://www.svgrepo.com/show/84319/password.svg" alt="Password" width="20" height="20">
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" placeholder="Password" class="form-control" style="border:none;">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="submit" class="btn btn-success px-4" value="Login">
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <button class="btn btn-link px-0" type="button"><a href="../forgetpassword/" style="text-decoration: none; color: #007bff;">Forgot password?</a></button>
+                                    </div>
+                                </div>
+                            </form>
+                            {% if error %}
+                                <p style="color:red" class="animate-fade-in">{{ error }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card text-white" style="background-color: #1e272e; padding: 1rem 2rem; width: 44%;">
+
+                        <div class="card-body text-center">
+                            <div>
+                                <h2 class="animate-slide-in">Sign up</h2>
+                                <p class="animate-slide-in">For new users, please sign up.</p>
+                                <a href="../student_signup/" class="btn btn-success btn-lg">Register Now!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'base/js.html' %}
+
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const form = document.querySelector('form');
+            const inputs = document.querySelectorAll('input');
+            const signUpCard = document.querySelector('.bg-primary');
+
+            form.classList.add('animate-fade-in');
+            inputs.forEach(input => {
+                input.classList.add('animate-fade-in');
+            });
+            signUpCard.classList.add('animate-slide-in');
+        });
+    </script>
+</body>
+
+
+
+</html>
